@@ -132,7 +132,7 @@ flowchart LR
 
 ```bash
 # Clone Repository
-git clone https://github.com/Sanghyeon-Jo/sim-racing-telemetry-pipline.git
+git clone https://github.com/Sanghyeon-Jo/sim-racing-telemetry-pipeline.git
 cd sim-racing-telemetry-pipline
 
 # Install Dependencies
