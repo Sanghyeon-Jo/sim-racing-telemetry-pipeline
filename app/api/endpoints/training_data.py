@@ -8,9 +8,9 @@ ML 학습용 데이터를 PostgreSQL에 저장하는 API입니다.
 - 데이터 검증: Pydantic 스키마로 자동 검증
 - 에러 처리: 명확한 에러 메시지 반환
 
-면접 설명 포인트:
-- "왜 Upsert를 사용했나요?" → 중복 데이터 방지 및 자동 업데이트
-- "중복 키는?" → subsession_id + cust_id 복합키로 세션별 사용자 데이터 관리
+설계 배경:
+- Upsert 사용: 중복 데이터 방지 및 자동 업데이트를 위해 ON CONFLICT 처리
+- 복합키: subsession_id + cust_id로 세션별 사용자 데이터 관리
 """
 
 from fastapi import APIRouter, Depends, HTTPException

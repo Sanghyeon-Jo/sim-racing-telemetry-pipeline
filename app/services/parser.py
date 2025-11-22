@@ -8,10 +8,10 @@ Telemetry Data Parser Service
 2. 단위 변환: mph → kph, m/s → km/h 자동 변환
 3. 필드 정규화: snake_case로 통일
 
-면접 설명 포인트:
-- "왜 헤더 자동 탐지가 필요한가요?" → MoTeC, iRacing 등 소스마다 CSV 형식이 다름
-- "파싱 성공률 95%는 어떻게 달성했나요?" → Heuristic 로직 (Time 필드 탐지 + 단위 행 인식)
-- "성능 최적화는?" → Pandas 벡터화 연산 사용
+설계 배경:
+- 다양한 소스(MoTeC, iRacing, ACC)의 CSV 형식이 다름
+- Heuristic 로직(Time 필드 탐지 + 단위 행 인식)으로 파싱 성공률 95% 달성
+- Pandas 벡터화 연산으로 성능 최적화
 """
 
 import pandas as pd
@@ -151,9 +151,9 @@ class TelemetryParser:
         Raises:
             ValueError: If CSV format is invalid
             
-        면접 설명:
-            - "파싱 실패 시 어떻게 하나요?" → 명확한 에러 메시지와 함께 ValueError 발생
-            - "성능은?" → Pandas 벡터화 연산으로 10k 레코드 0.5초 처리
+        에러 처리:
+            - 파싱 실패 시 명확한 에러 메시지와 함께 ValueError 발생
+            - 성능: Pandas 벡터화 연산으로 10k 레코드 0.5초 처리
         """
         try:
             # 텍스트로 변환
