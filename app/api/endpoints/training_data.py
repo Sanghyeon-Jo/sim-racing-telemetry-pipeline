@@ -1,7 +1,7 @@
 """
 Training Data Collection API Endpoint
 
-정제된 세션 피처를 Supabase 테이블에 업서트
+정제된 세션 피처를 PostgreSQL 테이블에 업서트
 """
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -19,7 +19,7 @@ async def collect_training_data(
     supabase: Client = Depends(get_supabase_client),
 ):
     """
-    Upsert feature-engineered training rows into Supabase.
+    Upsert feature-engineered training rows into PostgreSQL.
     
     중복 키: subsession_id, cust_id
     """
@@ -38,7 +38,7 @@ async def collect_training_data(
         if not response.data:
             raise HTTPException(
                 status_code=500,
-                detail="Supabase upsert returned no data.",
+                detail="Database upsert returned no data.",
             )
 
         return {"data": response.data}
